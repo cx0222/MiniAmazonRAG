@@ -37,6 +37,6 @@ public class DataLoader implements CommandLineRunner {
         LOGGER.info("Loading product information from CSV file");
         List<Product> documentList = csvParserService.parseCSV(resourceName);
         documentService.addProducts(documentList);
-        LOGGER.info("Loading product information from CSV file");
+        LOGGER.info("Loaded product information from CSV file");
     }
 }

@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -55,8 +56,9 @@ public class DocumentService {
         return count;
     }
 
-    public int deleteDocument(String idList) {
-        return deleteDocuments(List.of(idList));
+    public int deleteProduct(long productId) {
+        String documentId = new UUID(0, productId).toString();
+        return deleteDocuments(List.of(documentId));
     }
 
     public int deleteDocuments(List<String> idList) {

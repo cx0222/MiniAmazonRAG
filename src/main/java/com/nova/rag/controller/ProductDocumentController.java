@@ -2,7 +2,7 @@ package com.nova.rag.controller;
 
 import com.nova.rag.entity.Product;
 import com.nova.rag.service.DocumentService;
-import com.nova.rag.util.ValidUUID;
+import jakarta.validation.constraints.Min;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,9 +35,9 @@ public class ProductDocumentController {
 
     @DeleteMapping
     public ResponseEntity<String> deleteProductDocument(
-            @RequestParam @ValidUUID String id
+            @RequestParam @Min(0) long id
     ) {
-        int count = documentService.deleteDocument(id);
+        int count = documentService.deleteProduct(id);
         if (count == 0) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("Failed to delete products");

@@ -77,7 +77,8 @@ public class Product {
         Map<String, Object> metadata = Map.of(
                 "id", id,
                 "category_id", categoryId,
-                "price", price
+                "price", price,
+                "link", "http://www.cx0222.cn:8080/product/id/" + id
         );
         return new Document(
                 new UUID(0, id).toString(),

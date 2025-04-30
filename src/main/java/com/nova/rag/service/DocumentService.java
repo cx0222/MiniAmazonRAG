@@ -12,7 +12,6 @@ import org.springframework.ai.chat.prompt.SystemPromptTemplate;
 import org.springframework.ai.document.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,8 +24,8 @@ public class DocumentService {
     private static final Logger LOGGER = LoggerFactory.getLogger(DocumentService.class);
 
     private final DocumentRepository documentRepository;
-    @Value("classpath:prompts/default_prompt.st")
-    private Resource systemPrompt;
+    @Value("${options.prompt}")
+    private String systemPrompt;
 
     @Autowired
     public DocumentService(DocumentRepository documentRepository) {

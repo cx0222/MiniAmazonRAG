@@ -1,4 +1,4 @@
-package net.hifoss.rag;
+package com.nova.rag;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

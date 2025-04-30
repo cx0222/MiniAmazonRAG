@@ -1,0 +1,40 @@
+server:
+    port: 8080
+spring:
+    application:
+        name: MiniAmazonRAG
+    datasource:
+        url: jdbc:postgresql://localhost:5432/amazon_vector
+        username: novacx0222
+        password: Xuan2020311462
+    ai:
+        ollama:
+            embedding:
+                model: mxbai-embed-large
+                options:
+                    top-k: 10
+                    top-p: 0.5
+                    num-batch: 768
+                    num-ctx: 4096
+                    num-thread: 8
+            init:
+                max-retries: 1
+            base-url: http://localhost:11434
+            chat:
+                model: qwen3
+                options:
+                    top-k: 1
+                    top-p: 0.5
+                    num-batch: 768
+                    num-ctx: 16384
+                    num-thread: 8
+                    temperature: 0.3
+        vectorstore:
+            pgvector:
+                id-type: uuid
+                index-type: hnsw
+                distance-type: cosine_distance
+options:
+    dataloader:
+        enable: true
+        filename: "/opt/data/products.csv"

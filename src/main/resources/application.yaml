@@ -36,7 +36,7 @@ spring:
                 distance-type: cosine_distance
 options:
     dataloader:
-        enable: true
+        enable: false
         filename: "/opt/data/products.csv"
     prompt: "You're a qa assistant for a nda. 
         Use the information from the DOCUMENTS section to provide accurate, simple and short answers. 

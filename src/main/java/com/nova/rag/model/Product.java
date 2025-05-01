@@ -15,10 +15,13 @@ public class Product {
     private long id;
     @NotNull
     private long categoryId;
+    @NotNull
     @Size(min = 10, max = 250)
     private String name;
+    @NotNull
     @Min(0)
     private double price;
+    @NotNull
     @Size(min = 10, max = 250)
     private String description;
 

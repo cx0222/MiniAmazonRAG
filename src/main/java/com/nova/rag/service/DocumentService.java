@@ -1,7 +1,7 @@
 package com.nova.rag.service;
 
-import com.nova.rag.entity.Product;
-import com.nova.rag.entity.UserSearchRequest;
+import com.nova.rag.model.Product;
+import com.nova.rag.model.UserSearchRequest;
 import com.nova.rag.repository.DocumentRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

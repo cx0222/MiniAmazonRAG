@@ -1,6 +1,6 @@
 package com.nova.rag.service;
 
-import com.nova.rag.entity.Product;
+import com.nova.rag.model.Product;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;

@@ -1,6 +1,6 @@
 package com.nova.rag.controller;
 
-import com.nova.rag.entity.UserSearchRequest;
+import com.nova.rag.model.UserSearchRequest;
 import com.nova.rag.service.ChatModelService;
 import com.nova.rag.service.DocumentService;
 import org.springframework.ai.chat.prompt.Prompt;

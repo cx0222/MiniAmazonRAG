@@ -1,6 +1,6 @@
 package com.nova.rag.runner;
 
-import com.nova.rag.entity.Product;
+import com.nova.rag.model.Product;
 import com.nova.rag.service.CSVParserService;
 import com.nova.rag.service.DocumentService;
 import org.slf4j.Logger;

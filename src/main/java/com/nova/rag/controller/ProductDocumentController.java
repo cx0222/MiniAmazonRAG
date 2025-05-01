@@ -1,6 +1,6 @@
 package com.nova.rag.controller;
 
-import com.nova.rag.entity.Product;
+import com.nova.rag.model.Product;
 import com.nova.rag.service.DocumentService;
 import jakarta.validation.constraints.Min;
 import org.springframework.beans.factory.annotation.Autowired;

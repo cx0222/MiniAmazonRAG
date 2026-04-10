@@ -65,19 +65,18 @@ public class DocumentService {
 
     private Message getSystemMessage(List<Document> documentList) {
         String documents = documentList.stream()
-                .map(document -> """
-                        - Product description:
-                          %s
-                          Attributes:
-                          %s
-                        """.formatted(truncateText(document.getText()), document.getMetadata()))
+                .map(document -> "- Product description:\n%s\nAttributes:\n%s"
+                        .formatted(truncateText(document.getText()), document.getMetadata()))
                 .collect(Collectors.joining("\n\n"));
         SystemPromptTemplate template = new SystemPromptTemplate(systemPrompt);
         return template.createMessage(Map.of("documents", documents));
     }
 
     private String truncateText(String text) {
-        if (text == null || text.length() <= MAX_DOCUMENT_TEXT_LENGTH) {
+        if (text == null) {
+            return "";
+        }
+        if (text.length() <= MAX_DOCUMENT_TEXT_LENGTH) {
             return text;
         }
         return text.substring(0, MAX_DOCUMENT_TEXT_LENGTH) + "...";

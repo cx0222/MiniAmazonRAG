@@ -21,9 +21,9 @@ class DocumentServiceTest {
         DocumentService documentService = new DocumentService(repository);
         ReflectionTestUtils.setField(documentService, "systemPrompt", "DOCUMENTS:\n{documents}");
 
-        String longText = "a".repeat(550);
+        String documentTextExceedingLimit = "a".repeat(550);
         when(repository.searchDocuments("find long product", 5))
-                .thenReturn(List.of(new Document("doc-1", longText, Map.of("id", 1))));
+                .thenReturn(List.of(new Document("doc-1", documentTextExceedingLimit, Map.of("id", 1))));
 
         Prompt prompt = documentService.generatePromptFromRequest(new UserSearchRequest("find long product", 5));
         String systemText = prompt.getInstructions().getFirst().getText();

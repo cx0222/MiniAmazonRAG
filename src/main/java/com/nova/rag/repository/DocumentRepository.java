@@ -10,6 +10,8 @@ import java.util.List;
 
 @Repository
 public class DocumentRepository {
+    private static final int MAX_TOP_K = 10;
+
     private final VectorStore vectorStore;
 
     @Autowired
@@ -26,9 +28,10 @@ public class DocumentRepository {
     }
 
     public List<Document> searchDocuments(String prompt, int limit) {
+        int topK = Math.min(limit, MAX_TOP_K);
         SearchRequest request = SearchRequest.builder()
                 .query(prompt)
-                .topK(limit)
+                .topK(topK)
                 .build();
         return vectorStore.similaritySearch(request);
     }

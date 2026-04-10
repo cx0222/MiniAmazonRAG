@@ -22,6 +22,18 @@ Only `name` and `description` are embedded into vector space for retrieval; othe
 - **Distance Metric**: Cosine distance  
 - **ID Format**: stored as UUID
 
+### ⚙️ Environment Configuration
+Use environment variables for runtime configuration (do **not** commit credentials):
+
+```bash
+export DB_URL=jdbc:postgresql://localhost:5432/amazon_vector
+export DB_USERNAME=postgres
+export DB_PASSWORD=your_password
+export OLLAMA_BASE_URL=http://localhost:11434
+```
+
+You can also copy values from `src/main/resources/application-example.yaml` and keep local overrides in `application-local.yaml` or `.env` (both ignored by git).
+
 ### 💬 LLM & Embedding Configuration (via Ollama)
 ```yaml
 ollama:

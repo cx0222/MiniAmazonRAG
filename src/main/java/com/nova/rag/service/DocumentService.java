@@ -22,6 +22,7 @@ import java.util.stream.Collectors;
 @Service
 public class DocumentService {
     private static final Logger LOGGER = LoggerFactory.getLogger(DocumentService.class);
+    private static final int MAX_DOCUMENT_TEXT_LENGTH = 500;
 
     private final DocumentRepository documentRepository;
     @Value("${options.prompt}")
@@ -44,14 +45,9 @@ public class DocumentService {
     }
 
     public int addDocuments(List<Document> documentList) {
-        int count = 0;
-        try {
-            documentRepository.addDocuments(documentList);
-            count = documentList.size();
-            LOGGER.info("Added {} documents", count);
-        } catch (Exception exception) {
-            LOGGER.error("Failed to add documents", exception);
-        }
+        documentRepository.addDocuments(documentList);
+        int count = documentList.size();
+        LOGGER.info("Added {} documents", count);
         return count;
     }
 
@@ -61,24 +57,29 @@ public class DocumentService {
     }
 
     public int deleteDocuments(List<String> idList) {
-        int count = 0;
-        try {
-            documentRepository.deleteDocuments(idList);
-            count = idList.size();
-            LOGGER.info("Deleted {} documents", count);
-        } catch (Exception exception) {
-            LOGGER.error("Failed to delete documents", exception);
-        }
+        documentRepository.deleteDocuments(idList);
+        int count = idList.size();
+        LOGGER.info("Deleted {} documents", count);
         return count;
     }
 
     private Message getSystemMessage(List<Document> documentList) {
         String documents = documentList.stream()
-                .map(document -> "- The product description is %s, and the attributes are %s"
-                        .formatted(document.getText(), document.getMetadata()))
+                .map(document -> "- Product description:\n%s\nAttributes:\n%s"
+                        .formatted(truncateText(document.getText()), document.getMetadata()))
                 .collect(Collectors.joining("\n\n"));
         SystemPromptTemplate template = new SystemPromptTemplate(systemPrompt);
         return template.createMessage(Map.of("documents", documents));
+    }
+
+    private String truncateText(String text) {
+        if (text == null) {
+            return "";
+        }
+        if (text.length() <= MAX_DOCUMENT_TEXT_LENGTH) {
+            return text;
+        }
+        return text.substring(0, MAX_DOCUMENT_TEXT_LENGTH) + "...";
     }
 
     public Prompt generatePromptFromRequest(UserSearchRequest request) {

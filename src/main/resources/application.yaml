@@ -4,9 +4,9 @@ spring:
     application:
         name: MiniAmazonRAG
     datasource:
-        url: jdbc:postgresql://localhost:5432/amazon_vector
-        username: novacx0222
-        password: Xuan2020311462
+        url: ${DB_URL:jdbc:postgresql://localhost:5432/amazon_vector}
+        username: ${DB_USERNAME:postgres}
+        password: ${DB_PASSWORD:}
     ai:
         ollama:
             embedding:
@@ -19,7 +19,7 @@ spring:
                     num-thread: 8
             init:
                 max-retries: 1
-            base-url: http://localhost:11434
+            base-url: ${OLLAMA_BASE_URL:http://localhost:11434}
             chat:
                 model: qwen3
                 options:

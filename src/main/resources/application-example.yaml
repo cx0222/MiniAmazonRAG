@@ -1,0 +1,8 @@
+spring:
+    datasource:
+        url: ${DB_URL:jdbc:postgresql://localhost:5432/amazon_vector}
+        username: ${DB_USERNAME:postgres}
+        password: ${DB_PASSWORD:}
+    ai:
+        ollama:
+            base-url: ${OLLAMA_BASE_URL:http://localhost:11434}

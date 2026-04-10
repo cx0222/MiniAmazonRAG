@@ -21,7 +21,7 @@ public class ChatModelController {
         this.documentService = documentService;
     }
 
-    @PostMapping(produces = "text/html")
+    @PostMapping(produces = "text/plain")
     public Flux<String> chatWithModel(@RequestBody UserSearchRequest request) {
         Prompt prompt = documentService.generatePromptFromRequest(request);
         return chatModelService.generateStream(prompt)
